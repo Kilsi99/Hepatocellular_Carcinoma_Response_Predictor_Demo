@@ -1,0 +1,93 @@
+# ----------------------------
+# Python
+# ----------------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.py[cod]
+*.so
+
+# Virtual environments
+.venv/
+.venv_backend/
+.venv_frontend/
+env/
+venv/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# ----------------------------
+# Environment variables
+# ----------------------------
+.env
+.env.*
+*.env
+
+# ----------------------------
+# IDE / Editor
+# ----------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ----------------------------
+# OS files
+# ----------------------------
+.DS_Store
+Thumbs.db
+
+# ----------------------------
+# Testing / coverage
+# ----------------------------
+.pytest_cache/
+coverage/
+htmlcov/
+.coverage
+
+# ----------------------------
+# Logs
+# ----------------------------
+*.log
+
+# ----------------------------
+# Jupyter
+# ----------------------------
+.ipynb_checkpoints/
+
+# ----------------------------
+# Docker
+# ----------------------------
+*.tar
+
+# ----------------------------
+# Model artifacts (if large)
+# ----------------------------
+*.pt
+*.pth
+*.h5
+*.onnx
+*.joblib
+*.pkl
+
+# ----------------------------
+# Temporary files
+# ----------------------------
+*.tmp
+*.bak
+
+# ----------------------------
+# Model artifacts
+# ----------------------------
+models/
+*.pt
+*.pth
+*.h5
+*.onnx
+*.joblib
+*.pkl
