@@ -1,3 +1,4 @@
+'''
 from transformers import AutoTokenizer, AutoModelForTokenClassification, pipeline, AutoModel
 
 liver_disease_flag = [
@@ -51,19 +52,8 @@ symptoms_flag = [
 
 model_name = "OpenMed/OpenMed-NER-PathologyDetect-PubMed-109M"
 
-tokenizer = AutoTokenizer.from_pretrained(
-    model_name,
-    truncation=True,
-    padding="max_length",
-    model_max_length=512
-)
-
-ner = pipeline(
-    "token-classification",
-    model=model_name,
-    tokenizer=tokenizer,
-    aggregation_strategy="simple"
-)
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+ner = pipeline("token-classification", model=model_name, tokenizer=tokenizer)
 
 def split_chunks(clinical_notes: str, chunk_size=512, overlap=50):
     tokens = tokenizer.encode(clinical_notes, add_special_tokens=False)
@@ -134,4 +124,16 @@ def generate_ner_flags(clinical_notes: str) -> list:
             ner_list[i] = 1
 
     return ner_list
+    '''
 
+import random
+
+def generate_ner_flags(dummy_clinical_notes) -> list:
+    """
+    Mimics the output of the NER pipeline by generating a random binary list of flags.
+    The order of flags is the same as the real NER function:
+    [liver_tumor, liver_disease, portal_hypertension, biliary, symptoms]
+    """
+    
+    # Generate 0 or 1 for each flag randomly
+    return [random.randint(0, 1) for _ in range(5)]

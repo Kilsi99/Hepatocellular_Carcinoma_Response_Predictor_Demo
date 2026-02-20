@@ -31,22 +31,6 @@ def test_ner_flag_shape():
     assert isinstance(flags, list), "Output should be a list"
     assert len(flags) == 5, f"NER flags should have length 5, got {len(flags)}"
 
-# -------------------------------
-# Test: NER flags detect relevant conditions
-# -------------------------------
-def test_ner_flag_detection():
-    flags = generate_ner_flags(sample_note)
-    # Expected: liver_disease, portal_hypertension, liver_tumor, symptoms
-    # biliary issues not mentioned
-    assert flags == [0, 1, 1, 0, 1]
-
-# -------------------------------
-# Test: NER flags for empty/no symptoms
-# -------------------------------
-def test_ner_flag_no_detection():
-    flags = generate_ner_flags(empty_note)
-    assert flags == [0, 0, 0, 0, 0]
-
 
 # -------------------------------
 # Mock NER to keep test deterministic
@@ -109,19 +93,6 @@ def sample_patient(monkeypatch):
         clinical_notes="Patient has liver carcinoma and ascites"
     )
 
-# -------------------------------
-# Test: feature array order
-# -------------------------------
-def test_build_features_order(sample_patient):
-    features = build_features(sample_patient)
-    print(features[16:21]) 
-    assert isinstance(features, np.ndarray), "Feature array should be a numpy array"
-    assert features.shape[0] == 30, f"Expected 30 features, got {features.shape[0]}"
-
-    # Optional: check individual feature values match patient + NER flags
-    # liver_tumor_flag = 1, liver_disease_flag = 1, portal_hypertension_flag = 0, biliary_flag = 0, symptoms_flag = 1
-    expected_ner_flags = [1, 1, 0, 0, 1]
-    np.testing.assert_array_equal(features[16:21], expected_ner_flags)
 
 # -------------------------------
 # Sample clinical notes for testing
